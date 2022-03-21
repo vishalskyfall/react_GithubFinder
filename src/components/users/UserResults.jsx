@@ -1,14 +1,14 @@
-import React, { useEffect, useContext } from "react";
+import React, {  useContext } from "react";
 import GithubContext from "../../context/GithubContext";
 import Spinner from "../layout/Spinner";
 import USerItem from "./USerItem";
 
 //need to use them when load so useeffect
 function UserResults() {
-  const { users, loading, fetchUsers } = useContext(GithubContext);
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+  const { users, loading } = useContext(GithubContext);
+  // useEffect(() => {
+  //   fetchUsers(); //try to comment this fetch to see spinner hahaahah 
+  // }, []);
   //now loaded users we want them in this file so state
 
   if (!loading) {
