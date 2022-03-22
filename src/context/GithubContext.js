@@ -29,9 +29,9 @@ export const GithubProvider = ({ children }) => {
       q:text
     })
       const response = await fetch(`${GITHUB_URL}/search/users?${params}`, {
-        headers: {
-          Authorization: `token ${GITHUB_TOKEN}`,
-        },
+        // headers: {
+        //   Authorization: `token ${GITHUB_TOKEN}`,
+        // },
       });
   
       const { items} = await response.json();
