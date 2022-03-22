@@ -6,6 +6,7 @@ import USerItem from "./USerItem";
 //need to use them when load so useeffect
 function UserResults() {
   const { users, loading } = useContext(GithubContext);
+  
   // useEffect(() => {
   //   fetchUsers(); //try to comment this fetch to see spinner hahaahah 
   // }, []);

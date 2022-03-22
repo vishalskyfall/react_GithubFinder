@@ -11,6 +11,8 @@ export const GithubProvider = ({ children }) => {
   // const [loading, setLoading] = useState(true);
   const initialState = {
     users: [],
+    user:{},
+    repos:[],
     loading: false,
   };
 
@@ -19,6 +21,8 @@ export const GithubProvider = ({ children }) => {
  const clearUser = () =>{
    dispatch({type:'CLEAR_USERS'})
  }
+
+
   const searchUsers = async (text) => {
     setLoading();
     const params = new URLSearchParams({
@@ -41,6 +45,57 @@ export const GithubProvider = ({ children }) => {
       })
     }; 
 
+//for single user
+ const getUser = async (login) => {
+    setLoading();
+    
+      const response = await fetch(`${GITHUB_URL}/users/${login}`, {
+        headers: {
+          Authorization: `token ${GITHUB_TOKEN}`,
+        },
+      });
+
+      if(response.status === 404){
+        window.location ='/notfound'
+      }
+      else{
+        const data = await response.json();
+        dispatch({
+          type:'GET_USER',
+          payload:data
+        })
+      }
+  // console.log(data);
+      // setUsers(data);
+      // setLoading(false);
+    }; 
+
+    //get repos
+    const getUserRepos = async (login) => {
+      setLoading();
+      //to sort via created date 
+      const params = new URLSearchParams({
+        sort:'created',
+        per_page:10
+      })
+     
+        const response = await fetch(`${GITHUB_URL}/users/${login}/repos?${params}`, {
+          headers: {
+            Authorization: `token ${GITHUB_TOKEN}`,
+          },
+        });
+    
+        const data = await response.json();
+    // console.log(data);
+        // setUsers(data);
+        // setLoading(false);
+  
+        dispatch({
+          type:'GET_REPOS',
+          payload:data
+        })
+      }; 
+  
 
 
 
@@ -70,10 +125,14 @@ export const GithubProvider = ({ children }) => {
     <GithubContext.Provider
       value={{
         users: state.users,
+        user:state.user,
         loading: state.loading,
+        repos:state.repos, //instead of these 4 lines you can directly add "...state" will save space
         // fetchUsers,
         searchUsers,
-        clearUser
+        clearUser,
+        getUser,
+        getUserRepos
       }}
     >
       {children}
