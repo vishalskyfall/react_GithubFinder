@@ -50,9 +50,9 @@ export const GithubProvider = ({ children }) => {
     setLoading();
     
       const response = await fetch(`${GITHUB_URL}/users/${login}`, {
-        headers: {
-          Authorization: `token ${GITHUB_TOKEN}`,
-        },
+        // headers: {
+        //   Authorization: `token ${GITHUB_TOKEN}`,
+        // },
       });
 
       if(response.status === 404){
@@ -80,9 +80,9 @@ export const GithubProvider = ({ children }) => {
       })
      
         const response = await fetch(`${GITHUB_URL}/users/${login}/repos?${params}`, {
-          headers: {
-            Authorization: `token ${GITHUB_TOKEN}`,
-          },
+          // headers: {
+          //   Authorization: `token ${GITHUB_TOKEN}`,
+          // },
         });
     
         const data = await response.json();
