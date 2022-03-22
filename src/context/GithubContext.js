@@ -97,26 +97,27 @@ export const GithubProvider = ({ children }) => {
       }; 
   
 
+//can use later for fetching 
+//as of now commenting thanks
 
+  // const fetchUsers = async () => {
+  //   setLoading();
+  //   const response = await fetch(`${GITHUB_URL}/users`, {
+  //     headers: {
+  //       Authorization: `token ${GITHUB_TOKEN}`,
+  //     },
+  //   });
 
-  const fetchUsers = async () => {
-    setLoading();
-    const response = await fetch(`${GITHUB_URL}/users`, {
-      headers: {
-        Authorization: `token ${GITHUB_TOKEN}`,
-      },
-    });
+  //   const data = await response.json();
+  //   // console.log(data);
+  //   // setUsers(data);
+  //   // setLoading(false);
 
-    const data = await response.json();
-    // console.log(data);
-    // setUsers(data);
-    // setLoading(false);
-
-    dispatch({
-      type: "GET_USERS",
-      payload: data,
-    });
-  };
+  //   dispatch({
+  //     type: "GET_USERS",
+  //     payload: data,
+  //   });
+  // };
 
   //set loading
 
